@@ -19,25 +19,23 @@ password: admin
 """
 
 from setuptools import setup, find_packages
-from aukit import __version__ as aukit_version
+from phkit import __version__ as phkit_version
 import os
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
-install_requires = ['pypinyin']
-requires = ['pypinyin']
+install_requires = ['pypinyin', 'hanziconv']
+requires = install_requires
 
 
 # [w.strip() for w in open("requirements.txt", encoding="utf8") if w.strip()]
 
 def create_readme():
-    from phkit import __doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc
-    from phkit import normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc
+    from phkit import __doc__, version_doc, doc_convert, doc_number, doc_phoneme, doc_pinyin, doc_sequence, doc_symbol
     docs = []
     with open("README.md", "wt", encoding="utf8") as fout:
-        for doc in [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
-                    normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]:
+        for doc in [__doc__, version_doc, doc_symbol, doc_sequence, doc_pinyin, doc_phoneme, doc_number, doc_convert]:
             fout.write(doc)
             docs.append(doc)
     return "".join(docs)
@@ -51,18 +49,18 @@ def pip_install():
             logger.info("pip install {} failed".format(pkg))
 
 
-aukit_doc = create_readme()
+phkit_doc = create_readme()
 pip_install()
 
 setup(
     name="phkit",
-    version=aukit_version,
+    version=phkit_version,
     author="kuangdd",
     author_email="kuangdd@foxmail.com",
     description="phoneme toolkit",
-    long_description=aukit_doc,
+    long_description=phkit_doc,
     long_description_content_type="text/markdown",
-    url="https://github.com/KuangDD/aukit",
+    url="https://github.com/KuangDD/phkit",
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=install_requires,  # 指定项目最低限度需要运行的依赖项
     python_requires='>=3.5',  # python的依赖关系
@@ -78,12 +76,6 @@ setup(
         'Programming Language :: Python :: 3.7',
         "Operating System :: OS Independent",
     ],
-    entry_points={
-        'console_scripts': [
-            'aup = aukit.audio_cli:play_audio_cli',
-            'aur = aukit.audio_cli:play_audio_cli'
-        ]
-    }
 )
 
 if __name__ == "__main__":

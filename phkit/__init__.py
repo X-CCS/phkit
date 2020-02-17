@@ -3,27 +3,16 @@
 # author: kuangdd
 # date: 2020/2/17
 """
-语音合成文本处理：
-音素整理
-辅音：
-aa b c ch d ee f g h ii j k l m n oo p q r s sh t uu vv x z zh
-元音：
-a ai an ang ao e ei en eng er i ia ian iang iao ie in ing iong iu ix iy iz o ong ou u ua uai uan uang uen ueng uei ui un uo v van ve vn
-音调：
-1 2 3 4 5
-字母：
-Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-英文：
-A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-标点：
-! ? . , ; : " # ( )
-注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“|#=\s|(=(（[［{｛【<《|)=)）]］}｝】>》
-预留：
-0 6 7 8 9
-其他：
-_ ~ *
+## phkit
+phoneme toolkit: 音素相关的文本处理工具箱。
 
+### 安装
 
+```
+pip install phkit
+```
+
+todo:
 文本正则化处理
 数字读法
 字符读法
@@ -45,6 +34,26 @@ OOV
 命名实体识别
 依存句法分析
 """
+
+__version__ = "0.0.1"
+
+version_doc = """
+### 版本
+v0.0.1
+""".format(__version__)
+
+from .symbol import __doc__ as doc_symbol
+from .sequence import __doc__ as doc_sequence
+from .pinyin import __doc__ as doc_pinyin
+from .phoneme import __doc__ as doc_phoneme
+from .number import __doc__ as doc_number
+from .convert import __doc__ as doc_convert
+
+from .convert import fan2jian, jian2fan, quan2ban, ban2quan
+from .number import say_digit, say_decimal, say_number
+from .pinyin import han2pinyin, split_pinyin
+from .sequence import text2sequence, text2phoneme, phoneme2sequence
+from .symbol import symbol_zh
 
 if __name__ == "__main__":
     print(__file__)

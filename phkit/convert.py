@@ -3,21 +3,47 @@
 # author: kuangdd
 # date: 2020/2/17
 """
+### convert
+文本转换，全角半角转换，简体繁体转换。
 """
-from .phoneme import py2ph
-from .pinyin import han2pinyin
+from hanziconv import hanziconv
+
+hc = hanziconv.HanziConv()
+
+# 繁体转简体
+fan2jian = hc.toSimplified
+
+# 简体转繁体
+jian2fan = hc.toTraditional
+
+# 半角转全角映射表
+ban2quan_dict = {i: i + 65248 for i in range(33, 127)}
+ban2quan_dict.update({32: 12288})
+
+# 全角转半角映射表
+quan2ban_dict = {v: k for k, v in ban2quan_dict.items()}
 
 
-def han2phoneme(han, py_errors=None, ph_errors=None):
-    out = []
-    pys = han2pinyin(han, errors=py_errors)
-    for py in pys:
-        phs = py2ph(py, errors=ph_errors)
-        out.extend(phs)
-    return out
+def ban2quan(text: str):
+    """
+    半角转全角
+    :param text:
+    :return:
+    """
+    return text.translate(ban2quan_dict)
+
+
+def quan2ban(text: str):
+    """
+    全角转半角
+    :param text:
+    :return:
+    """
+    return text.translate(quan2ban_dict)
 
 
 if __name__ == "__main__":
-    print(__file__)
-    assert han2phoneme("汉字转音素") == ['h', 'an', '4', 'z', 'iy', '4', 'zh', 'uan', '3', 'ii', 'in', '1', 's', 'u', '4']
-    assert han2phoneme("汉,a1") == ['h', 'an', '4', ',a1']
+    assert ban2quan("aA1 ,:$。、") == "ａＡ１　，：＄。、"
+    assert quan2ban("ａＡ１　，：＄。、") == "aA1 ,:$。、"
+    assert jian2fan("中国语言") == "中國語言"
+    assert jian2fan("中國語言") == "中国语言"

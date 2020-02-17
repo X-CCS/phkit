@@ -3,11 +3,11 @@
 # author: kuangdd
 # date: 2020/2/16
 """
+### phoneme
+音素映射表，包括辅音元音转为音素，字母转音素，标点转音素。
 """
-import re
-
 # 拼音转音素映射表：419
-py2ph_dict = {
+fuyuan2ph_dict = {
     'a': 'aa a',
     'ai': 'aa ai',
     'an': 'aa an',
@@ -429,35 +429,28 @@ py2ph_dict = {
     'zuo': 'z uo'
 }
 
-# 音调：5为轻声
-_diao_re = re.compile(r"([12345]$)")
+# 字母音素：26
+_alphabet = 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz'.split()
 
+# 字母：26
+_upper = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+_lower = list('abcdefghijklmnopqrstuvwxyz')
 
-def py2ph(py, errors=None):
-    """
-    单个拼音转为音素列表
-    :param py: str,拼音字符串
-    :param errors: function,对OOV拼音的处理函数，默认保留原样
-    :return: list,音素列表
-    """
-    parts = _diao_re.split(py)
-    if len(parts) == 1:
-        pny = py
-        diao = "5"
-    else:
-        pny = parts[0]
-        diao = parts[1]
-    if pny in py2ph_dict:
-        ph = py2ph_dict[pny]
-        return ph.split() + [diao]
-    else:
-        if errors is None:
-            return [py]
-        else:
-            return errors(py)
+upper2ph_dict = dict(zip(_upper, _alphabet))
+lower2ph_dict = dict(zip(_lower, _upper))
 
+# 标点：9
+_biaodian = '! ? . , ; : " # ( )'.split()
+# 注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“”'‘’|#= 　\t|(=(（[［{｛【<《|)=)）]］}｝】>》
+
+biao2ph_dict = {
+    '!': '!', '！': '!', '?': '?', '？': '?', '.': '.', '。': '.', ',': ',', '，': ',', '、': ',', ';': ';', '；': ';',
+    ':': ':', '：': ':', '"': '"', '“': '"', '”': '"', "'": '"', '‘': '"', '’': '"', ' ': '#', '\u3000': '#',
+    '\t': '#', '(': '(', '（': '(', '[': '(', '［': '(', '{': '(', '｛': '(', '【': '(', '<': '(', '《': '(',
+    ')': ')', '）': ')', ']': ')', '］': ')', '}': ')', '｝': ')', '】': ')', '>': ')', '》': ')'
+}
+
+char2ph_dict = {**upper2ph_dict, **lower2ph_dict, **biao2ph_dict}
 
 if __name__ == "__main__":
     print(__file__)
-    assert py2ph("yao") == ["ii", "iao", "5"]
-    assert py2ph("nhm") == ["nhm"]

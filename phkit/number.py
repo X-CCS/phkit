@@ -3,6 +3,8 @@
 # author: kuangdd
 # date: 2020/2/16
 """
+### number
+数字读法，主要分按数值大小读和一个一个数字读。
 """
 import re
 

@@ -95,6 +95,7 @@ def english_cleaners(text):
     return text
 
 
+# number
 def _remove_commas(m):
     return m.group(1).replace(",", "")
 
