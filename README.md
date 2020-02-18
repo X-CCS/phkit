@@ -31,20 +31,22 @@ OOV
 依存句法分析
 
 ### 版本
-v0.0.1
+v0.0.2
 
 ### symbol
-音素汇总。
+音素标签，中文音素，简单英文音素，简单中文音素。
 
 适用于中文、英文和中英混合的音素，其中汉字拼音采用清华大学的音素，英文字符分字母和英文。
 
-辅音：
+中文音素简介：
+
+声母：
 aa b c ch d ee f g h ii j k l m n oo p q r s sh t uu vv x z zh
 
-元音：
-a ai an ang ao e ei en eng er i ia ian iang iao ie in ing iong iu ix iy iz o ong ou u ua uai uan uang uen ueng uei ui un uo v van ve vn ng uong
+韵母：
+a ai an ang ao e ei en eng er i ia ian iang iao ie in ing iong iu ix iy iz o ong ou u ua uai uan uang ueng ui un uo v van ve vn ng uong
 
-音调：
+声调：
 1 2 3 4 5
 
 字母：
@@ -55,7 +57,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 标点：
 ! ? . , ; : " # ( )
-注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“|#=\s|(=(（[［{｛【<《|)=)）]］}｝】>》
+注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“|#= 　	|(=(（[［{｛【<《|)=)）]］}｝】>》
 
 预留：
 0 6 7 8 9
@@ -64,15 +66,15 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 _ ~  - *
 
 ### sequence
-文本转为音素列表，或者直接转为数值列表。
+转为序列的方法，文本转为音素列表，文本转为ID列表。
 
 ### pinyin
-汉字转为拼音，拼音分为音调和非音调两块。
+转为拼音的方法，汉字转拼音，分离声调。
 
 拼音为字母+数字形式，例如pin1。
 
 ### phoneme
-音素映射表，包括辅音元音转为音素，字母转音素，标点转音素。
+音素映射表，包括不带声调拼音转为音素，英文字母转音素，标点转音素。
 
 ### number
 数字读法，主要分按数值大小读和一个一个数字读。

@@ -4,19 +4,19 @@
 # date: 2020/2/16
 """
 ### sequence
-文本转为音素列表，或者直接转为数值列表。
+转为序列的方法，文本转为音素列表，文本转为ID列表。
 """
-from .phoneme import fuyuan2ph_dict, char2ph_dict
-from .pinyin import han2pinyin, split_pinyin
-from .symbol import _chain, _eos, _pad, symbol_zh
+from .phoneme import shengyun2ph_dict, char2ph_dict
+from .pinyin import text2pinyin, split_pinyin
+from .symbol import _chain, _eos, _pad, symbol_chinese
 from .convert import fan2jian, quan2ban
 import re
 
 # 分隔英文字母
 _en_re = re.compile(r"([a-zA-Z]+)")
 
-ph2id_dict = {p: i for i, p in enumerate(symbol_zh)}
-id2ph_dict = {i: p for i, p in enumerate(symbol_zh)}
+ph2id_dict = {p: i for i, p in enumerate(symbol_chinese)}
+id2ph_dict = {i: p for i, p in enumerate(symbol_chinese)}
 
 assert len(ph2id_dict) == len(id2ph_dict)
 
@@ -34,12 +34,12 @@ def text2phoneme(text):
     out = []
     text = normalize_chinese(text)
     text = normalize_english(text)
-    pys = han2pinyin(text, errors=py_errors)
+    pys = text2pinyin(text, errors=py_errors)
     for py in pys:
         if type(py) is str:
             fuyuan, diao = split_pinyin(py)
-            if fuyuan in fuyuan2ph_dict:
-                phs = fuyuan2ph_dict[fuyuan].split()
+            if fuyuan in shengyun2ph_dict:
+                phs = shengyun2ph_dict[fuyuan].split()
                 phs.append(diao)
             else:
                 phs = []
@@ -59,11 +59,19 @@ def text2sequence(text):
     return seq
 
 
-def phoneme2sequence(phs):
+def phoneme2sequence(src):
     out = []
-    for w in phs:
+    for w in src:
         if w in ph2id_dict:
             out.append(ph2id_dict[w])
+    return out
+
+
+def sequence2phoneme(src):
+    out = []
+    for w in src:
+        if w in id2ph_dict:
+            out.append(id2ph_dict[w])
     return out
 
 

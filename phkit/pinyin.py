@@ -4,7 +4,7 @@
 # date: 2020/2/17
 """
 ### pinyin
-汉字转为拼音，拼音分为音调和非音调两块。
+转为拼音的方法，汉字转拼音，分离声调。
 
 拼音为字母+数字形式，例如pin1。
 """
@@ -15,16 +15,16 @@ import re
 _diao_re = re.compile(r"([12345]$)")
 
 
-def han2pinyin(han, errors=None):
+def text2pinyin(text, errors=None):
     """
     汉语文本转为拼音列表
-    :param han: str,汉语文本字符串
+    :param text: str,汉语文本字符串
     :param errors: function,对转拼音失败的字符的处理函数，默认保留原样
     :return: list,拼音列表
     """
     if errors is None:
         errors = "default"
-    pin = lazy_pinyin(han, style=Style.TONE3, errors=errors, strict=True)
+    pin = lazy_pinyin(text, style=Style.TONE3, errors=errors, strict=True)
     return pin
 
 
