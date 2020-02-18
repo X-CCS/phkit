@@ -30,7 +30,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“|#= 　\t|(=(（[［{｛【<《|)=)）]］}｝】>》
 
 预留：
-0 6 7 8 9
+w y 0 6 7 8 9
 
 其他：
 _ ~  - *
@@ -68,8 +68,8 @@ _english = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'.split()
 _biaodian = '! ? . , ; : " # ( )'.split()
 # 注：!=!！|?=?？|.=.。|,=,，、|;=;；|:=:：|"="“|#= \t|(=(（[［{｛【<《|)=)）]］}｝】>》
 
-# 其他：5
-_other = '0 6 7 8 9'.split()
+# 其他：7
+_other = 'w y 0 6 7 8 9'.split()
 
 # 大写字母：26
 _upper = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
@@ -91,7 +91,7 @@ _character_en = _upper + _lower + _punctuation
 # 用于英文或中文:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\'"(),-.:;?\s0123456789
 _character_cn = _upper + _lower + _punctuation + _digit
 
-# 中文音素：143
+# 中文音素：145
 # 支持中文环境、英文环境、中英混合环境，中文把文字转为清华大学标准的音素表示
 symbol_chinese = [_pad, _eos, _chain] + _shengmu + _yunmu + _shengdiao + _alphabet + _english + _biaodian + _other
 

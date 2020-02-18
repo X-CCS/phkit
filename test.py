@@ -20,7 +20,7 @@ def test_phkit():
     result = text2sequence(text)
     assert result == target
 
-    assert len(symbol_chinese) == 143
+    assert len(symbol_chinese) == 145
 
 
 if __name__ == "__main__":

@@ -27,3 +27,6 @@ def run_text2phoneme():
 if __name__ == "__main__":
     print(__file__)
     run_text2phoneme()
+    from phkit.sequence import symbol_chinese
+    from phkit.symbol import _lower
+    print(set(_lower) - set(symbol_chinese))

@@ -9,7 +9,7 @@ phoneme toolkit: 音素相关的文本处理工具箱。
 ### 安装
 
 ```
-pip install phkit
+pip install -U phkit
 ```
 
 todo:
@@ -35,7 +35,7 @@ OOV
 依存句法分析
 """
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 version_doc = """
 ### 版本
