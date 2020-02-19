@@ -13,6 +13,7 @@ def test_phkit():
               ',', 'Tt', 'Tt', 'Ss', ':', '(', 'T', 'E', 'X', 'T', '#', 'T', 'O', '#', 'S', 'P', 'E', 'E', 'C', 'H',
               ')', '.', '-', '~', '_']
     result = text2phoneme(text)
+    print(result)
     assert result == target
 
     target = [11, 32, 74, 2, 28, 51, 74, 2, 29, 59, 73, 2, 12, 46, 71, 2, 22, 56, 74, 2, 131, 95, 95, 94, 133, 136, 121,
@@ -21,6 +22,11 @@ def test_phkit():
     assert result == target
 
     assert len(symbol_chinese) == 145
+
+    text = "岂有此理"
+    target = ['q', 'i', '2', '-', 'ii', 'iu', '3', '-', 'c', 'iy', '2', '-', 'l', 'i', '3', '-', '~', '_']
+    result = text2phoneme(text)
+    assert result == target
 
 
 if __name__ == "__main__":

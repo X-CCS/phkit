@@ -12,7 +12,7 @@ from pypinyin import lazy_pinyin, Style
 import re
 
 # 音调：5为轻声
-_diao_re = re.compile(r"([12345]$)")
+_diao_re = re.compile(r"([012345]$)")
 
 
 def text2pinyin(text, errors=None):
@@ -38,7 +38,7 @@ def split_pinyin(py):
     parts = _diao_re.split(py)
     if len(parts) == 1:
         fuyuan = py
-        diao = "5"
+        diao = ""
     else:
         fuyuan = parts[0]
         diao = parts[1]
@@ -47,5 +47,5 @@ def split_pinyin(py):
 
 if __name__ == "__main__":
     print(__file__)
-    assert han2pinyin("拼音") == ['pin1', 'yin1']
-    assert han2pinyin("汉字,a1") == ['han4', 'zi4', ',a1']
+    assert text2pinyin("拼音") == ['pin1', 'yin1']
+    assert text2pinyin("汉字,a1") == ['han4', 'zi4', ',a1']

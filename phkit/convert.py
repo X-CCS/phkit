@@ -4,7 +4,9 @@
 # date: 2020/2/17
 """
 ### convert
-文本转换，全角半角转换，简体繁体转换。
+文本转换。
+
+全角半角转换，简体繁体转换。
 """
 from hanziconv import hanziconv
 

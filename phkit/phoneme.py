@@ -4,7 +4,9 @@
 # date: 2020/2/16
 """
 ### phoneme
-音素映射表，包括不带声调拼音转为音素，英文字母转音素，标点转音素。
+音素映射表。
+
+不带声调拼音转为音素，声调转音素，英文字母转音素，标点转音素。
 """
 # 拼音转音素映射表：419
 shengyun2ph_dict = {
@@ -428,6 +430,8 @@ shengyun2ph_dict = {
     'tei': 't ei',
     'wong': 'uu uong'
 }
+
+diao2ph_dict = {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '0': '5', '': '5'}
 
 # 字母音素：26
 _alphabet = 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz'.split()

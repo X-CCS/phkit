@@ -5,9 +5,13 @@
 """
 语音处理工具箱。
 生成whl格式安装包：python setup.py bdist_wheel
-生成pypi格式安装包：python setup.py sdist
 
-上传pypi：python setup.py sdist upload
+直接上传pypi：python setup.py sdist upload
+
+用twine上传pypi：
+生成安装包：python setup.py sdist
+上传安装包：twine upload dist/phkit-0.0.3.tar.gz
+
 注意：需要在home目录下建立.pypirc配置文件，文件内容格式：
 [distutils]
 index-servers=pypi

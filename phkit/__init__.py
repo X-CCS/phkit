@@ -35,7 +35,7 @@ OOV
 依存句法分析
 """
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 version_doc = """
 ### 版本
@@ -52,7 +52,7 @@ from .convert import __doc__ as doc_convert
 from .convert import fan2jian, jian2fan, quan2ban, ban2quan
 from .number import say_digit, say_decimal, say_number
 from .pinyin import text2pinyin, split_pinyin
-from .sequence import text2sequence, text2phoneme, phoneme2sequence, sequence2phoneme
+from .sequence import text2sequence, text2phoneme, pinyin2phoneme, phoneme2sequence, sequence2phoneme
 from .sequence import symbol_chinese, ph2id_dict, id2ph_dict
 
 if __name__ == "__main__":

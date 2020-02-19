@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.INFO)
 def run_text2phoneme():
     from phkit.sequence import text2phoneme, text2sequence
     text = "汉字转音素，TTS：《Text to speech》。"
+    text = "岂有此理"
     out = text2phoneme(text)
     print(out)
     # ['h', 'an', '4', '-', 'z', 'iy', '4', '-', 'zh', 'uan', '3', '-', 'ii', 'in', '1', '-', 's', 'u', '4', '-', ',',
@@ -27,6 +28,3 @@ def run_text2phoneme():
 if __name__ == "__main__":
     print(__file__)
     run_text2phoneme()
-    from phkit.sequence import symbol_chinese
-    from phkit.symbol import _lower
-    print(set(_lower) - set(symbol_chinese))
